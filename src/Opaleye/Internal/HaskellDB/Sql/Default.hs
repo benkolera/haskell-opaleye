@@ -129,6 +129,7 @@ defaultSqlExpr gen expr =
                               e'  = sqlExpr gen e
                            in CaseSqlExpr cs' e'
       ListExpr es      -> ListSqlExpr (map (sqlExpr gen) es)
+      ArrayExpr es     -> ArraySqlExpr (map (sqlExpr gen) es)
       ParamExpr n _    -> ParamSqlExpr n PlaceHolderSqlExpr
       FunExpr n exprs  -> FunSqlExpr n (map (sqlExpr gen) exprs)
       CastExpr typ e1 -> CastSqlExpr typ (sqlExpr gen e1)
@@ -157,6 +158,7 @@ showBinOp  OpBitAnd     = "&"
 showBinOp  OpBitOr      = "|"
 showBinOp  OpBitXor     = "^"
 showBinOp  OpAsg        = "="
+showBinOp  OpContains   = "@>"
 
 
 data UnOpType = UnOpFun | UnOpPrefix | UnOpPostfix

@@ -24,6 +24,7 @@ data PrimExpr   = AttrExpr  Symbol
                 | ConstExpr Literal
                 | CaseExpr [(PrimExpr,PrimExpr)] PrimExpr
                 | ListExpr [PrimExpr]
+                | ArrayExpr [PrimExpr]
                 | ParamExpr (Maybe Name) PrimExpr
                 | FunExpr Name [PrimExpr]
                 | CastExpr Name PrimExpr -- ^ Cast an expression to a given type.
@@ -48,11 +49,12 @@ data BinOp      = OpEq | OpLt | OpLtEq | OpGt | OpGtEq | OpNotEq
                 | OpAnd | OpOr
                 | OpLike | OpIn
                 | OpOther String
-
+                   
                 | OpCat
                 | OpPlus | OpMinus | OpMul | OpDiv | OpMod
                 | OpBitNot | OpBitAnd | OpBitOr | OpBitXor
                 | OpAsg
+                | OpContains
                 deriving (Show,Read)
 
 data UnOp = OpNot

@@ -25,7 +25,7 @@ import qualified Opaleye.Internal.HaskellDB.Sql as Sql
 import Data.List (intersperse)
 import qualified Data.List.NonEmpty as NEL
 import Text.PrettyPrint.HughesPJ (Doc, (<+>), ($$), (<>), comma, doubleQuotes,
-                                  empty, equals, hcat, hsep, parens, punctuate,
+                                  empty, equals, hcat, hsep, parens, punctuate,brackets,
                                   text, vcat)
 
 -- Silliness to avoid "ORDER BY 1" etc. meaning order by the first
@@ -130,6 +130,7 @@ ppSqlExpr expr =
           where ppWhen (w,t) = text "WHEN" <+> ppSqlExpr w
                                <+> text "THEN" <+> ppSqlExpr t
       ListSqlExpr es      -> parens (commaH ppSqlExpr es)
+      ArraySqlExpr es     -> text "ARRAY" <> brackets (commaH ppSqlExpr es)
       ParamSqlExpr _ v -> ppSqlExpr v
       PlaceHolderSqlExpr -> text "?"
       CastSqlExpr typ e -> text "CAST" <> parens (ppSqlExpr e <+> text "AS" <+> text typ)

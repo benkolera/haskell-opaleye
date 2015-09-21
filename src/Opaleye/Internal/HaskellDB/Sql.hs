@@ -42,6 +42,7 @@ data SqlExpr = ColumnSqlExpr  SqlColumn
              | ConstSqlExpr   String
              | CaseSqlExpr    [(SqlExpr,SqlExpr)] SqlExpr
              | ListSqlExpr    [SqlExpr]
+             | ArraySqlExpr   [SqlExpr]
              | ParamSqlExpr (Maybe SqlName) SqlExpr
              | PlaceHolderSqlExpr
              | ParensSqlExpr SqlExpr

@@ -140,3 +140,4 @@ pgStrictJSONB = pgJSONB . IPT.strictDecodeUtf8
 
 pgLazyJSONB :: LByteString.ByteString -> Column PGJsonb
 pgLazyJSONB = pgJSONB . IPT.lazyDecodeUtf8
+

@@ -46,6 +46,7 @@ library
     , void                >= 0.4     && < 0.8
   exposed-modules: Opaleye,
                    Opaleye.Aggregate,
+                   Opaleye.Array,
                    Opaleye.Binary,
                    Opaleye.Column,
                    Opaleye.Constant,
